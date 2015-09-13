@@ -25,7 +25,26 @@ describe('toDoList feature', function() {
       $(".taskString").val('test task');
       clickEnter();
       expect('.tasks').toContainText('test task');
+      expect($('.taskString').val()).toEqual('');
     });
-    
+
+    it('does not add an empty task', function() {
+      $(".taskString").val('');
+      clickEnter();
+      expect('.tasks').toBeEmpty();
+    });
   });
+
+  describe('marking tasks done', function() {
+
+    it('tasks marked done are removed from the toDos', function() {
+      $(".taskString").val('test task');
+      clickEnter();
+      $('#task1').click();
+      expect('.tasks').toBeEmpty();
+    });
+
+
+  });
+
 });
