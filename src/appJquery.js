@@ -1,11 +1,28 @@
+
 $(document).ready(function() {
 
   var manager = new toDoManager();
 
-  // var tasks = $.map(manager.toDos, function(value) {
-  //   return('<span>' + value + '</span>');
-  // });
-  // $(".tasks").html(tasks.join(""));
+  function taskView() {
+    var tasks = $.map(manager.toDos, function(task) {
+      return('<li>' + task + '</li>');
+    });
+    $(".tasks").html(tasks);
+  };
 
-    $('.tasks').html(manager.toDos);
+  taskView();
+
+  $('.addTask').click(function(){
+    var taskInput = $('.taskString').val();
+    manager.addTask(taskInput);
+    taskView();
+  });
+
+  $('.taskString').keypress(function(e) {
+    var taskInput = $('.taskString').val();
+    if(e.which == 13) {
+      manager.addTask(taskInput);
+      taskView();
+    };
+  });
 });
