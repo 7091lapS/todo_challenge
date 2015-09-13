@@ -1,5 +1,5 @@
 var toDoManager = function() {
-  this.toDos = [];
+  this.toDos = ['test', 'test2'];
   this.doneTasks = [];
 };
 
