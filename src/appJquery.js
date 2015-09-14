@@ -22,10 +22,11 @@ $(document).ready(function() {
     };
   });
 
-  $('.toDoTask').change(function(){
-    manager.markDone(parseInt($(this).attr('id')));
-    taskView();
+  $('body').on('change', 'input[type=checkbox]', function(){
+    if ($(this).is(':checked')) {
+      manager.markDone(parseInt($(this).attr('id')));
+      taskView();
+    }
   });
-
 
 });
