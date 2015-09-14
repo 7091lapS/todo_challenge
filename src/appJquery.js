@@ -21,11 +21,13 @@ $(document).ready(function() {
       $('.taskString').val('');
     };
   });
-
-  $('.toDoTask').change(function(){
-    manager.markDone(parseInt($(this).attr('id')));
-    taskView();
+  
+  // needs on change because it doesnt know about the taskView functions return
+  $('body').on('change', '.toDoTask', function(){
+    if ($(this).is(':checked')) {
+      manager.markDone(parseInt($(this).attr('id')));
+      taskView();
+    }
   });
-
 
 });

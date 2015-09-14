@@ -40,7 +40,7 @@ describe('toDoList feature', function() {
     it('tasks marked done are removed from the toDos', function() {
       $(".taskString").val('test task');
       clickEnter();
-      $('#task1').click();
+      $('#0').click();
       expect('.tasks').toBeEmpty();
     });
 
