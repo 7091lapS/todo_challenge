@@ -3,14 +3,23 @@ $(document).ready(function() {
 
   var manager = new toDoManager();
 
-  // tasks checkbox view
+  // to do tasks checkbox view
   function taskView() {
-    var tasks = $.map(manager.toDos, function(task, index) {
-      return("<li><input type='checkbox' class='toDoTask' id=" + index + ">" + task + "</li>");
+    var tasksToDo = $.map(manager.toDos, function(task, index) {
+      return("<li><input type='checkbox' class='toDoTask' id=toDo" + index + ">" + task + "</li>");
     });
-    $(".tasks").html(tasks);
+    $(".tasks").html(tasksToDo);
   };
-  taskView();
+
+  // done tasks checkbox view
+  function viewComplete(){
+    var tasksComplete = $.map(manager.doneTasks, function(task, index) {
+      return("<li><input type='checkbox' class='completeTask' id=complete" + index + ">" + task + "</li>");
+    });
+    $(".tasks").html(tasksComplete);
+  };
+
+  // taskView();
 
   // adding a valid task with Enter key
   $('.taskString').keypress(function(e) {
@@ -18,10 +27,10 @@ $(document).ready(function() {
     if (e.which == 13 && taskInput != '') {
       manager.addTask(taskInput);
       taskView();
-      $('.taskString').val('');
+      emptyField();
     };
   });
-  
+
   // needs on change because it doesnt know about the taskView functions return
   $('body').on('change', '.toDoTask', function(){
     if ($(this).is(':checked')) {
@@ -29,5 +38,24 @@ $(document).ready(function() {
       taskView();
     }
   });
+
+  // nn possible reasons of unexpected behaviour are how ^ this function decides which id to delete. Or simply in how the splice method works. Check it.
+
+
+
+
+  $('.complete').click(function(){
+    viewComplete();
+  });
+
+  $('.active').click(function(){
+    taskView();
+  });
+
+
+  // cleans up field after task is entered
+  function emptyField(){
+    $('.taskString').val('');
+  };
 
 });

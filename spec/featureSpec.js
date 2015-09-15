@@ -1,8 +1,8 @@
-describe('toDoList feature', function() {
+describe('toDoList feature', function(){
 
   var manager = new toDoManager();
 
-  var clickEnter = function() {
+  var clickEnter = function(){
     var e = jQuery.Event("keypress");
     e.which = 13;
     e.keyCode = 13;
@@ -15,33 +15,44 @@ describe('toDoList feature', function() {
     $.holdReady(false);
   });
 
-  describe('adding tasks', function() {
+  describe('adding tasks', function(){
 
-    it('has a form to enter the task', function() {
+    it('has a form to enter the task', function(){
       expect("<input class='inputTask'>").toExist();
     });
 
-    it('can add a task to the list', function() {
+    it('can add a task to the list', function(){
       $(".taskString").val('test task');
       clickEnter();
       expect('.tasks').toContainText('test task');
       expect($('.taskString').val()).toEqual('');
     });
 
-    it('does not add an empty task', function() {
+    it('does not add an empty task', function(){
       $(".taskString").val('');
       clickEnter();
       expect('.tasks').toBeEmpty();
     });
   });
 
-  describe('marking tasks done', function() {
+  describe('marking tasks done', function(){
 
-    it('tasks marked done are removed from the toDos', function() {
+    it('tasks marked done are removed from the toDos', function(){
       $(".taskString").val('test task');
       clickEnter();
-      $('#0').click();
+      $('#toDo0').click();
       expect('.tasks').toBeEmpty();
+    });
+  });
+
+  describe('viewing the completed tasks', function(){
+
+    it('I can show my completed tasks', function(){
+      $(".taskString").val('test task');
+      clickEnter();
+      $('#toDo0').click();
+      $('.complete').click();
+      expect('.tasks').toContainText('test task');
     });
 
 

@@ -2,6 +2,7 @@
 
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="public/bootstrap.css">
     <meta charset='UTF-8'>
     <title>toDO List</title>
   </head>
@@ -12,7 +13,11 @@
       <!-- <button class='addTask'>Add</button> looks nicer without this -->
         <ul style="list-style-type: none;" class='tasks'></ul>
     </h2>
-  <section class='itemsLeft'></section>
+  <section class='.toggleView'>
+    <button class='all'>All</button>
+    <button class='active'>Active</button>
+    <button class='complete'>Complete</button>
+  </section>
   <script src="src/jquery.js"></script>
   <script src="src/toDoManager.js"></script>
   <script src="src/appJquery.js"></script>
